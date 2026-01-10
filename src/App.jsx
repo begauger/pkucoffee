@@ -1,19 +1,34 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import Navigation from './components/Navigation';
+import Home from './pages/Home';
+import BrowseRecipes from './pages/BrowseRecipes';
+import RecipeDetail from './pages/RecipeDetail';
+import BuildYourOwn from './pages/BuildYourOwn';
+import ShoppingList from './pages/ShoppingList';
+import MyRecipes from './pages/MyRecipes';
+
 function App() {
+  const [savedRecipes, setSavedRecipes] = useState([]);
+  const [shoppingList, setShoppingList] = useState([]);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-2xl p-8 max-w-md">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          PKU Coffee App
-        </h1>
-        <p className="text-lg text-gray-600 mb-6">
-          Create delicious, low-protein coffee drinks!
-        </p>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md">
-          Get Started
-        </button>
+    <Router>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <main className="pb-20 md:pb-0">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/recipes" element={<BrowseRecipes savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes} />} />
+            <Route path="/recipe/:id" element={<RecipeDetail savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes} setShoppingList={setShoppingList} />} />
+            <Route path="/build" element={<BuildYourOwn setSavedRecipes={setSavedRecipes} setShoppingList={setShoppingList} />} />
+            <Route path="/shopping-list" element={<ShoppingList shoppingList={shoppingList} setShoppingList={setShoppingList} />} />
+            <Route path="/my-recipes" element={<MyRecipes savedRecipes={savedRecipes} />} />
+          </Routes>
+        </main>
       </div>
-    </div>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
