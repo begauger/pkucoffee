@@ -17,12 +17,16 @@ function Navigation() {
   return (
     <>
       {/* Desktop Navigation - Top */}
-      <nav className="hidden md:block bg-white shadow-sm sticky top-0 z-50">
+      <nav className="hidden md:block sticky top-0 z-50 glass-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
-              <span className="text-2xl">☕</span>
-              <span className="text-xl font-bold text-gray-800">PKU Coffee</span>
+              <img 
+                src="/pku.png" 
+                alt="PKU Coffee Logo" 
+                className="h-10 w-10 object-contain filter drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]"
+              />
+              <span className="text-xl font-bold glow-text">PKU Coffee</span>
             </Link>
             <div className="flex space-x-8">
               {navItems.slice(1).map((item) => {
@@ -33,8 +37,8 @@ function Navigation() {
                     to={item.path}
                     className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition ${
                       isActive(item.path)
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                        ? 'text-[#00d4ff] bg-[rgba(0,212,255,0.1)] border border-[rgba(0,212,255,0.3)]'
+                        : 'text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.05)]'
                     }`}
                   >
                     <Icon size={20} />
@@ -48,7 +52,7 @@ function Navigation() {
       </nav>
 
       {/* Mobile Navigation - Bottom */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 glass-card border-t border-[rgba(255,255,255,0.1)]">
         <div className="flex justify-around items-center h-16">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -58,11 +62,15 @@ function Navigation() {
                 to={item.path}
                 className={`flex flex-col items-center justify-center flex-1 h-full transition ${
                   isActive(item.path)
-                    ? 'text-blue-600'
-                    : 'text-gray-600'
+                    ? 'text-[#00d4ff]'
+                    : 'text-gray-400'
                 }`}
               >
-                <Icon size={24} strokeWidth={isActive(item.path) ? 2.5 : 2} />
+                <Icon 
+                  size={24} 
+                  strokeWidth={isActive(item.path) ? 2.5 : 2}
+                  className={isActive(item.path) ? 'filter drop-shadow-[0_0_8px_rgba(0,212,255,0.5)]' : ''}
+                />
                 <span className="text-xs mt-1 font-medium">{item.label}</span>
               </Link>
             );

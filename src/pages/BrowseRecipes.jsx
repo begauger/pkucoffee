@@ -124,10 +124,10 @@ function BrowseRecipes({ savedRecipes, setSavedRecipes }) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold mb-2 glow-text">
           Browse Recipes
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-400">
           Discover delicious PKU-friendly coffee recipes
         </p>
       </div>
@@ -141,8 +141,8 @@ function BrowseRecipes({ savedRecipes, setSavedRecipes }) {
               onClick={() => setFilter(type)}
               className={`px-4 py-2 rounded-full font-medium transition whitespace-nowrap ${
                 filter === type
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-600 hover:bg-gray-100'
+                  ? 'bg-[rgba(0,212,255,0.2)] text-[#00d4ff] border-2 border-[rgba(0,212,255,0.5)] shadow-[0_4px_15px_rgba(0,212,255,0.3)]'
+                  : 'glass-card text-gray-400 hover:text-white hover:bg-[rgba(255,255,255,0.1)]'
               }`}
             >
               {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -156,17 +156,20 @@ function BrowseRecipes({ savedRecipes, setSavedRecipes }) {
         {filteredRecipes.map((recipe) => (
           <div
             key={recipe.id}
-            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
+            className="glass-card glass-card-hover rounded-xl overflow-hidden"
           >
             {/* Recipe Image/Icon */}
-            <div className="bg-gradient-to-br from-amber-400 to-orange-500 h-32 flex items-center justify-center text-6xl">
+            <div 
+              className="h-32 flex items-center justify-center text-6xl border-b border-[rgba(255,255,255,0.1)]"
+              style={{background: 'linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,47,247,0.15))'}}
+            >
               {recipe.image}
             </div>
 
             {/* Recipe Content */}
             <div className="p-4">
               <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-bold text-gray-800 flex-1">
+                <h3 className="text-lg font-bold text-white flex-1">
                   {recipe.name}
                 </h3>
                 <button
@@ -175,12 +178,12 @@ function BrowseRecipes({ savedRecipes, setSavedRecipes }) {
                 >
                   <Heart
                     size={20}
-                    className={isSaved(recipe.id) ? 'fill-red-500 text-red-500' : 'text-gray-400'}
+                    className={isSaved(recipe.id) ? 'fill-[#00d4ff] text-[#00d4ff]' : 'text-gray-500'}
                   />
                 </button>
               </div>
 
-              <p className="text-sm text-gray-600 mb-3">
+              <p className="text-sm text-gray-400 mb-3">
                 {recipe.description}
               </p>
 
@@ -198,12 +201,12 @@ function BrowseRecipes({ savedRecipes, setSavedRecipes }) {
 
               {/* Type Badge */}
               <div className="flex items-center justify-between">
-                <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                <span className="inline-block px-3 py-1 bg-[rgba(0,212,255,0.15)] text-[#00d4ff] text-xs font-medium rounded-full border border-[rgba(0,212,255,0.3)]">
                   {recipe.type}
                 </span>
                 <Link
                   to={`/recipe/${recipe.id}`}
-                  className="text-blue-600 font-medium text-sm hover:text-blue-700"
+                  className="text-[#00d4ff] font-medium text-sm hover:text-[#7b2ff7] transition"
                 >
                   View Recipe →
                 </Link>

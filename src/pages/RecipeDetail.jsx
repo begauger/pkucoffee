@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Heart, ShoppingCart, Clock, TrendingUp } from 'lucide-react';
 
-// This would normally come from a database or API
+// Get recipe data by ID
 const getRecipeById = (id) => {
   const recipes = [
     {
@@ -204,10 +204,10 @@ function RecipeDetail({ savedRecipes, setSavedRecipes, setShoppingList }) {
   if (!recipe) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8 text-center">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Recipe not found</h2>
+        <h2 className="text-2xl font-bold text-white mb-4">Recipe not found</h2>
         <button
           onClick={() => navigate('/recipes')}
-          className="text-blue-600 hover:text-blue-700"
+          className="text-[#00d4ff] hover:text-[#7b2ff7] transition"
         >
           ← Back to recipes
         </button>
@@ -243,21 +243,24 @@ function RecipeDetail({ savedRecipes, setSavedRecipes, setShoppingList }) {
       {/* Back Button */}
       <button
         onClick={() => navigate('/recipes')}
-        className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-4"
+        className="flex items-center gap-2 text-gray-400 hover:text-[#00d4ff] mb-4 transition"
       >
         <ArrowLeft size={20} />
         <span>Back to recipes</span>
       </button>
 
       {/* Recipe Header */}
-      <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
-        <div className="bg-gradient-to-br from-amber-400 to-orange-500 h-48 md:h-64 flex items-center justify-center">
-          <span className="text-9xl">{recipe.image}</span>
+      <div className="glass-card rounded-xl overflow-hidden mb-6">
+        <div 
+          className="h-48 md:h-64 flex items-center justify-center border-b border-[rgba(255,255,255,0.1)]"
+          style={{background: 'linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,47,247,0.15)'}}
+        >
+          <span className="text-9xl filter drop-shadow-[0_4px_20px_rgba(0,212,255,0.5)]">{recipe.image}</span>
         </div>
 
         <div className="p-6">
           <div className="flex justify-between items-start mb-4">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+            <h1 className="text-3xl md:text-4xl font-bold glow-text">
               {recipe.name}
             </h1>
             <button
@@ -266,35 +269,35 @@ function RecipeDetail({ savedRecipes, setSavedRecipes, setShoppingList }) {
             >
               <Heart
                 size={28}
-                className={isSaved ? 'fill-red-500 text-red-500' : 'text-gray-400'}
+                className={isSaved ? 'fill-[#00d4ff] text-[#00d4ff]' : 'text-gray-500'}
               />
             </button>
           </div>
 
-          <p className="text-gray-600 mb-4">{recipe.description}</p>
+          <p className="text-gray-400 mb-4">{recipe.description}</p>
 
           {/* Stats */}
           <div className="flex flex-wrap gap-4 mb-6">
-            <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-lg">
-              <TrendingUp className="text-green-600" size={20} />
-              <span className="font-semibold text-green-800">{recipe.protein}g protein</span>
+            <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-lg border border-[rgba(0,212,255,0.3)]">
+              <TrendingUp className="text-[#00d4ff]" size={20} />
+              <span className="font-semibold text-[#00d4ff]">{recipe.protein}g protein</span>
             </div>
-            <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-lg">
-              <Clock className="text-blue-600" size={20} />
-              <span className="font-semibold text-blue-800">{recipe.prepTime} minutes</span>
+            <div className="flex items-center gap-2 glass-card px-4 py-2 rounded-lg border border-[rgba(123,47,247,0.3)]">
+              <Clock className="text-[#a78bfa]" size={20} />
+              <span className="font-semibold text-[#a78bfa]">{recipe.prepTime} minutes</span>
             </div>
-            <div className="bg-purple-50 px-4 py-2 rounded-lg">
-              <span className="font-semibold text-purple-800">{recipe.difficulty}</span>
+            <div className="glass-card px-4 py-2 rounded-lg border border-[rgba(255,255,255,0.1)]">
+              <span className="font-semibold text-white">{recipe.difficulty}</span>
             </div>
-            <div className="bg-orange-50 px-4 py-2 rounded-lg">
-              <span className="font-semibold text-orange-800">{recipe.servings} serving</span>
+            <div className="glass-card px-4 py-2 rounded-lg border border-[rgba(255,255,255,0.1)]">
+              <span className="font-semibold text-white">{recipe.servings} serving</span>
             </div>
           </div>
 
           {/* Action Buttons */}
           <button
             onClick={addToShoppingList}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2"
+            className="w-full glass-card btn-ripple py-3 rounded-lg font-semibold transition border-2 border-[rgba(0,212,255,0.5)] text-[#00d4ff] hover:border-[rgba(0,212,255,0.8)] hover:shadow-[0_6px_25px_rgba(0,212,255,0.5)] flex items-center justify-center gap-2"
           >
             <ShoppingCart size={20} />
             Add to Shopping List
@@ -303,39 +306,39 @@ function RecipeDetail({ savedRecipes, setSavedRecipes, setShoppingList }) {
       </div>
 
       {/* Ingredients */}
-      <div className="bg-white rounded-xl shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Ingredients</h2>
+      <div className="glass-card rounded-xl p-6 mb-6">
+        <h2 className="text-2xl font-bold text-white mb-4">Ingredients</h2>
         <ul className="space-y-3">
           {recipe.ingredients.map((ingredient, index) => (
-            <li key={index} className="flex justify-between items-center py-2 border-b border-gray-100">
+            <li key={index} className="flex justify-between items-center py-2 border-b border-[rgba(255,255,255,0.1)]">
               <div>
-                <span className="text-gray-800">{ingredient.name}</span>
+                <span className="text-white">{ingredient.name}</span>
                 <span className="text-gray-500 ml-2">({ingredient.amount})</span>
               </div>
-              <span className="text-sm text-green-600 font-medium">
+              <span className="text-sm text-[#00d4ff] font-medium">
                 {ingredient.protein}g protein
               </span>
             </li>
           ))}
         </ul>
-        <div className="mt-4 pt-4 border-t border-gray-200">
+        <div className="mt-4 pt-4 border-t border-[rgba(255,255,255,0.1)]">
           <div className="flex justify-between items-center font-bold">
-            <span className="text-gray-800">Total Protein:</span>
-            <span className="text-green-600 text-lg">{recipe.protein}g</span>
+            <span className="text-white">Total Protein:</span>
+            <span className="text-[#00d4ff] text-lg">{recipe.protein}g</span>
           </div>
         </div>
       </div>
 
       {/* Instructions */}
-      <div className="bg-white rounded-xl shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Instructions</h2>
+      <div className="glass-card rounded-xl p-6 mb-6">
+        <h2 className="text-2xl font-bold text-white mb-4">Instructions</h2>
         <ol className="space-y-3">
           {recipe.instructions.map((step, index) => (
             <li key={index} className="flex gap-3">
-              <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">
+              <span className="flex-shrink-0 w-8 h-8 bg-[rgba(0,212,255,0.2)] text-[#00d4ff] rounded-full flex items-center justify-center font-semibold border border-[rgba(0,212,255,0.5)]">
                 {index + 1}
               </span>
-              <span className="text-gray-700 pt-1">{step}</span>
+              <span className="text-gray-300 pt-1">{step}</span>
             </li>
           ))}
         </ol>
@@ -343,12 +346,12 @@ function RecipeDetail({ savedRecipes, setSavedRecipes, setShoppingList }) {
 
       {/* Tips */}
       {recipe.tips && recipe.tips.length > 0 && (
-        <div className="bg-amber-50 rounded-xl p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">💡 Tips</h2>
+        <div className="glass-card rounded-xl p-6" style={{background: 'rgba(123, 47, 247, 0.05)'}}>
+          <h2 className="text-2xl font-bold text-white mb-4">💡 Tips</h2>
           <ul className="space-y-2">
             {recipe.tips.map((tip, index) => (
-              <li key={index} className="text-gray-700 flex gap-2">
-                <span>•</span>
+              <li key={index} className="text-gray-300 flex gap-2">
+                <span className="text-[#a78bfa]">•</span>
                 <span>{tip}</span>
               </li>
             ))}
