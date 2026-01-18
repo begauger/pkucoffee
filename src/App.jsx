@@ -7,6 +7,7 @@ import RecipeDetail from './pages/RecipeDetail';
 import BuildYourOwn from './pages/BuildYourOwn';
 import ShoppingList from './pages/ShoppingList';
 import MyRecipes from './pages/MyRecipes';
+import PKUEducation from './pages/PKUEducation';
 
 function App() {
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -22,6 +23,7 @@ function App() {
             <Route path="/recipes" element={<BrowseRecipes savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes} />} />
             <Route path="/recipe/:id" element={<RecipeDetail savedRecipes={savedRecipes} setSavedRecipes={setSavedRecipes} setShoppingList={setShoppingList} />} />
             <Route path="/build" element={<BuildYourOwn setSavedRecipes={setSavedRecipes} setShoppingList={setShoppingList} />} />
+            <Route path="/education" element={<PKUEducation />} />
             <Route path="/shopping-list" element={<ShoppingList shoppingList={shoppingList} setShoppingList={setShoppingList} />} />
             <Route path="/my-recipes" element={<MyRecipes savedRecipes={savedRecipes} />} />
           </Routes>

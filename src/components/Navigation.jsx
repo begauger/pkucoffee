@@ -8,6 +8,7 @@ function Navigation() {
     { path: '/', icon: Home, label: 'Home' },
     { path: '/recipes', icon: BookOpen, label: 'Recipes' },
     { path: '/build', icon: PlusCircle, label: 'Build' },
+    { path: '/education', icon: BookOpen, label: 'Education' },
     { path: '/shopping-list', icon: ShoppingCart, label: 'List' },
     { path: '/my-recipes', icon: Heart, label: 'Saved' },
   ];
@@ -23,10 +24,10 @@ function Navigation() {
             <Link to="/" className="flex items-center space-x-2">
               <img 
                 src="/pku.png" 
-                alt="PKU Coffee Logo" 
+                alt="PKBrew Logo" 
                 className="h-10 w-10 object-contain filter drop-shadow-[0_0_10px_rgba(0,212,255,0.5)]"
               />
-              <span className="text-xl font-bold glow-text">PKU Coffee</span>
+              <span className="text-xl font-bold glow-text">PKBrew</span>
             </Link>
             <div className="flex space-x-8">
               {navItems.slice(1).map((item) => {
