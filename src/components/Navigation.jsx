@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, BookOpen, PlusCircle, ShoppingCart, Heart } from 'lucide-react';
+import { Home, BookOpen, PlusCircle, ShoppingCart, Heart, Calendar } from 'lucide-react';
 
 function Navigation() {
   const location = useLocation();
@@ -8,6 +8,7 @@ function Navigation() {
     { path: '/', icon: Home, label: 'Home' },
     { path: '/recipes', icon: BookOpen, label: 'Recipes' },
     { path: '/build', icon: PlusCircle, label: 'Build' },
+    { path: '/journal', icon: Calendar, label: 'Journal' },
     { path: '/education', icon: BookOpen, label: 'Education' },
     { path: '/shopping-list', icon: ShoppingCart, label: 'List' },
     { path: '/my-recipes', icon: Heart, label: 'Saved' },
