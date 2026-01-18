@@ -13,26 +13,75 @@ const ingredientCategories = {
     { name: 'Decaf Coffee', protein: 0, unit: 'cup' },
     { name: 'Coffee Substitute', protein: 0, unit: 'cup' },
     { name: 'Cold Brew Substitute', protein: 0, unit: 'cup' },
+    { name: 'Espresso Substitute (Single Shot)', protein: 0, unit: 'shot' },
+    { name: 'Espresso Substitute (Double Shot)', protein: 0, unit: 'shot' },
+    { name: 'Hot Water (Americano)', protein: 0, unit: 'cup' },
   ],
   sweeteners: [
     { name: 'Sugar', protein: 0, unit: 'tsp' },
+    { name: 'Brown Sugar', protein: 0, unit: 'tsp' },
     { name: 'Stevia', protein: 0, unit: 'tsp' },
     { name: 'Honey', protein: 0, unit: 'tsp' },
+    { name: 'Maple Syrup', protein: 0, unit: 'tbsp' },
     { name: 'Monk Fruit Sweetener', protein: 0, unit: 'tsp' },
     { name: 'Agave Syrup', protein: 0, unit: 'tbsp' },
+    { name: 'Coconut Sugar', protein: 0, unit: 'tsp' },
+    { name: 'Date Syrup', protein: 0, unit: 'tsp' },
+    { name: 'Erythritol', protein: 0, unit: 'tsp' },
+    { name: 'Splenda', protein: 0, unit: 'tsp' },
   ],
   flavors: [
     { name: 'Vanilla Extract', protein: 0, unit: 'tsp' },
     { name: 'Caramel Syrup (SF)', protein: 0, unit: 'tbsp' },
+    { name: 'Salted Caramel Syrup', protein: 0, unit: 'tbsp' },
     { name: 'Hazelnut Extract', protein: 0, unit: 'tsp' },
     { name: 'Peppermint Extract', protein: 0, unit: 'tsp' },
+    { name: 'Mint Extract', protein: 0, unit: 'tsp' },
+    { name: 'Almond Extract', protein: 0, unit: 'tsp' },
+    { name: 'Coconut Extract', protein: 0, unit: 'tsp' },
+    { name: 'Butter Extract', protein: 0, unit: 'tsp' },
+    { name: 'Maple Extract', protein: 0, unit: 'tsp' },
+    { name: 'Irish Cream Flavor', protein: 0, unit: 'tsp' },
+    { name: 'Amaretto Flavor', protein: 0, unit: 'tsp' },
     { name: 'Cocoa Powder', protein: 0.3, unit: 'tsp' },
+    { name: 'Mocha Sauce', protein: 0.2, unit: 'tbsp' },
+    { name: 'White Chocolate Syrup', protein: 0.1, unit: 'tbsp' },
+    { name: 'Pumpkin Puree', protein: 0.1, unit: 'tbsp' },
+    { name: 'Peanut Butter Powder (PB2)', protein: 0.4, unit: 'tsp' },
+    { name: 'Nutella (measured)', protein: 0.3, unit: 'tsp' },
+  ],
+  spices: [
     { name: 'Cinnamon', protein: 0, unit: 'tsp' },
+    { name: 'Nutmeg', protein: 0, unit: 'tsp' },
+    { name: 'Cardamom', protein: 0, unit: 'tsp' },
+    { name: 'Ginger Powder', protein: 0, unit: 'tsp' },
+    { name: 'Cloves', protein: 0, unit: 'tsp' },
+    { name: 'Pumpkin Pie Spice', protein: 0, unit: 'tsp' },
+    { name: 'Chai Spice Blend', protein: 0, unit: 'tsp' },
+    { name: 'Turmeric', protein: 0, unit: 'tsp' },
+    { name: 'Vanilla Bean', protein: 0, unit: 'piece' },
+  ],
+  addins: [
+    { name: 'Ice Cubes', protein: 0, unit: 'cup' },
+    { name: 'Coffee Ice Cubes', protein: 0, unit: 'cup' },
+    { name: 'Crushed Ice', protein: 0, unit: 'cup' },
+    { name: 'Whipped Coconut Cream', protein: 0.1, unit: 'tbsp' },
+    { name: 'Mini Chocolate Chips', protein: 0.2, unit: 'tsp' },
+    { name: 'Sprinkles', protein: 0, unit: 'tsp' },
+    { name: 'Crushed Cookies (measured)', protein: 0.2, unit: 'tsp' },
+    { name: 'Sea Salt', protein: 0, unit: 'pinch' },
+    { name: 'Brown Sugar Crumbles', protein: 0, unit: 'tsp' },
+    { name: 'Toasted Coconut Flakes', protein: 0.1, unit: 'tsp' },
+    { name: 'Caramel Drizzle', protein: 0, unit: 'drizzle' },
+    { name: 'Chocolate Drizzle', protein: 0.1, unit: 'drizzle' },
   ],
   toppings: [
     { name: 'Coconut Whipped Cream', protein: 0.1, unit: 'tbsp' },
     { name: 'Cinnamon Powder', protein: 0, unit: 'pinch' },
     { name: 'Cocoa Powder Dusting', protein: 0.1, unit: 'pinch' },
+    { name: 'Nutmeg Dusting', protein: 0, unit: 'pinch' },
+    { name: 'Vanilla Powder', protein: 0, unit: 'pinch' },
+    { name: 'Matcha Powder', protein: 0.1, unit: 'pinch' },
   ]
 };
 
@@ -169,7 +218,9 @@ function BuildYourOwn({ setSavedRecipes, setShoppingList }) {
           {Object.entries(ingredientCategories).map(([category, items]) => (
             <div key={category} className="glass-card rounded-xl p-6">
               <h3 className="font-semibold text-white mb-3 capitalize">
-                {category === 'coffee' ? 'Coffee Base' : category}
+                {category === 'coffee' ? 'Coffee Base' : 
+                 category === 'addins' ? 'Add-Ins' : 
+                 category}
               </h3>
               <div className="grid sm:grid-cols-2 gap-2">
                 {items.map((item, idx) => (
